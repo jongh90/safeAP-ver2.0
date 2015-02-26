@@ -280,20 +280,20 @@ public class MainActivity extends Activity {
     }
 
     private void getLiveData(){
-        es.submit(new getLiveDataTask("http://110.14.220.245/api/realtime"));
+        es.submit(new getLiveDataTask("http://app.safeap.net/api/realtime"));
     }
 
     private void getDailyData(){
-        es.submit(new getDailyDataTask("http://110.14.220.245/api/realtime"));
+        es.submit(new getDailyDataTask("http://app.safeap.net/api/realtime"));
     }
 
     private void getLogData(int type){
         m_adapter.refresh();
-        es.submit(new getLogDataTask("http://110.14.220.245/api/recenturl?clsid="+getIds(type)));
+        es.submit(new getLogDataTask("http://app.safeap.net/api/recenturl?clsid="+getIds(type)));
     }
 
     private void getGraphData(int type){
-        es.submit(new getGraphDataTask("http://110.14.220.245/api/graph?clsid="+getIds(type)));
+        es.submit(new getGraphDataTask("http://app.safeap.net/api/graph?clsid="+getIds(type)));
     }
 
     private String getIds(int type){
@@ -428,7 +428,7 @@ public class MainActivity extends Activity {
         }
 
         for(int i=0; i<6; i++){
-            String data = httpRequest("http://110.14.220.245/api/graph?clsid="+getIds(i));
+            String data = httpRequest("http://app.safeap.net/api/graph?clsid="+getIds(i));
             if(data == null) continue;
             try {
                 JSONObject json = new JSONObject(data);
@@ -808,10 +808,6 @@ public class MainActivity extends Activity {
                 switch (item.getItemId()){
                     case R.id.live : setLive(); break;
                     case R.id.today: setToday(); break;
-                    case R.id.setting:
-                        if(m_dns.isWiFi()){
-                            m_dns.setDNS(100,100,100,100);
-                        }
                 }
                 return true;
             }
